@@ -9,6 +9,8 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -26,10 +28,9 @@ public class PedidoService {
     private final ModelMapper modelMapper;
 
 
-    public List<PedidoDto> obterTodos() {
-        return repository.findAll().stream()
-                .map(p -> modelMapper.map(p, PedidoDto.class))
-                .collect(Collectors.toList());
+    public Page<PedidoDto> obterTodos(Pageable pageable) {
+        return repository.findAll(pageable)
+                .map(p -> modelMapper.map(p, PedidoDto.class));
     }
 
     public PedidoDto obterPorId(Long id) {

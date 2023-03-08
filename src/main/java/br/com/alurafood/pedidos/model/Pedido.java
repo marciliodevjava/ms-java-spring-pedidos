@@ -23,10 +23,10 @@ public class Pedido {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+
     private LocalDateTime dataHora;
 
-    @NotNull @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @OneToMany(cascade=CascadeType.PERSIST, mappedBy="pedido")

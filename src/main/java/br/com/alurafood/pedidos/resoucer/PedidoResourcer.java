@@ -6,6 +6,9 @@ import br.com.alurafood.pedidos.service.PedidoService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -20,8 +23,8 @@ public class PedidoResourcer {
         private PedidoService service;
 
         @GetMapping()
-        public List<PedidoDto> listarTodos() {
-            return service.obterTodos();
+        public ResponseEntity<Page<PedidoDto>> listarTodos(@PageableDefault(size = 10, page = 0, sort = "id")Pageable pageable) {
+            return ResponseEntity.ok(service.obterTodos(pageable));
         }
 
         @GetMapping("/{id}")
