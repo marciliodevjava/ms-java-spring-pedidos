@@ -1,4 +1,4 @@
-package br.com.alurafood.pedidos.controller;
+package br.com.alurafood.pedidos.resoucer;
 
 import br.com.alurafood.pedidos.dto.PedidoDto;
 import br.com.alurafood.pedidos.dto.StatusDto;
@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/pedidos")
-public class PedidoController {
+public class PedidoResourcer {
 
         @Autowired
         private PedidoService service;
